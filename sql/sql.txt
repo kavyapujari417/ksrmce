@@ -1,1 +1,42 @@
+CREATE TABLE Patient67 (
+    pid INT,
+    fname VARCHAR(50),
+    lname VARCHAR(50),
+    age INT,
+    bg VARCHAR(10)
+);
 
+INSERT INTO Patient67 (pid, fname, lname, age, bg) VALUES
+(1, 'madhava', 'reddy', 45, 'o+ve'),
+(2, 'abhinav', 'bandra', 45, 'o-ve'),
+(4, 'hari', 'kiran', 60, 'b-ve'),
+(3, 'madhava', 'kiran', 52, 'o+ve'),
+(5, 'veena', 'kumari', 42, NULL),
+(6, 'k_iran', 'kumar', 39, 'b-ve'),
+(2, 'abhinav', 'bandra', 45, 'o-ve'),
+(7, 'mahes%h', 'nambootri', 36, 'b+ve'),
+(8, 'rahul', 'kumar', 46, 'b-ve'),
+(9, 'bharat', 'kumar', 56, 'b-ve');
+
+-- select concat(fname, lname) as 'full name', age from patient0 order by age;
+-- select fname,lname ,bg from patient0 order by bg desc;
+-- select fname,lname,pid from patient0 order by lname,fname desc;
+-- select fname,age from patient0 
+-- order by concat('Hello',fname,lname) desc;
+-- select *from patient0 order by age desc;
+-- select distinct fname,age from patient0;
+-- select distinct age,bg from patient0;
+-- select distinct fname,age,bg from patient0 order by bg desc;
+-- select fname,lname,age from patient0 limit 3;
+-- select *from patient0 order by age desc limit 3;
+-- select bg,count(*) as 'count' from patient0 group by bg;
+-- select max(age) as 'max age',bg from patient0 group by bg;
+-- select lname,min(age) from patient0 group by bg,lname;
+-- select bg,max(age) as 'max age' from patient0 group by bg having max(age)>40;
+SELECT p1.*
+FROM Patient67 p1
+WHERE 3 = (
+    SELECT COUNT(DISTINCT p2.pid)
+    FROM Patient67 p2
+    WHERE p2.age > p1.age
+);
